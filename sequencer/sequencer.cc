@@ -216,6 +216,7 @@ Transport::ProcessPacket(uint8_t *packet, size_t len)
     ((struct sockaddr_in *)&saddr)->sin_addr.s_addr = iph->daddr;
     inet_ntop(AF_INET, &((struct sockaddr_in *)&saddr)->sin_addr, destip, sizeof(destip));
 
+    printf("destip %s groupaddr %s\n", destip, this->config->GetGroupAddr().c_str());
     if (strcmp(destip, this->config->GetGroupAddr().c_str())) {
         return false;
     }
