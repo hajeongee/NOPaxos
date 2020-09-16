@@ -186,6 +186,8 @@ Transport::ProcessPacket(uint8_t *packet, size_t len)
     char destip[INET6_ADDRSTRLEN];
     uint16_t group_bitmap;
 
+    printf("Received packet\n");
+
     if (len < sizeof(struct ether_header) + sizeof(struct iphdr) + sizeof(struct udphdr)) {
         return false;
     }
@@ -231,6 +233,8 @@ Transport::ProcessPacket(uint8_t *packet, size_t len)
         // fragmented.
         return false;
     }
+
+    printf("Received OUM packet!\n");
 
     datagram += sizeof(uint32_t) + sizeof(uint32_t); // now points to udp src
     /* Write the original udp src into header */
